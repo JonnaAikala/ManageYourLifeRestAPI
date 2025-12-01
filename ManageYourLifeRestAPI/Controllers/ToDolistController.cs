@@ -59,5 +59,20 @@ namespace ManageYourLifeRestAPI.Controllers
 
 
         }
+
+        //Tehtävän poistaminen
+        [HttpDelete("{id}")]
+
+        public ActionResult Delete(int id)
+        {
+            var tehtava = db.ToDolists.Find(id);
+            if (tehtava != null)
+            { //Jos tehtävä id:llä löytyy tietokannasta
+                db.ToDolists.Remove(tehtava);
+                db.SaveChanges();
+                return Ok("Tehtävä " + tehtava.Id + " poistettiin.");
+            }
+            return NotFound("Tehtävää id:llä " + id + " ei löytynyt.");
+        }
     }
 }

@@ -28,8 +28,11 @@ public partial class ManageYourLifeReactDbContext : DbContext
         modelBuilder.Entity<Shoplist>(entity =>
         {
             entity
-                .HasNoKey()
                 .ToTable("Shoplist");
+
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id)
+                  .ValueGeneratedOnAdd();
 
             entity.Property(e => e.Info).HasMaxLength(50);
             entity.Property(e => e.Product).HasMaxLength(50);
