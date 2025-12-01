@@ -1,0 +1,6 @@
+@ManageYourLifeRestAPI_HostAddress = http://localhost:5035
+
+GET {{ManageYourLifeRestAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
