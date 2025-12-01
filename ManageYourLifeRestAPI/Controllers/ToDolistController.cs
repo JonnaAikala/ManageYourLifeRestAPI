@@ -20,5 +20,43 @@ namespace ManageYourLifeRestAPI.Controllers
             return Ok(tehtävät);
 
         }
+
+        //Hakee tekemättömät tehtävät
+        [HttpGet]
+        [Route("{completed}")]
+        public ActionResult GetAllTasksByCompleted(string completed)
+        {
+            try
+            {
+                var tasks = db.ToDolists
+                              .Where(t => t.Completed.ToLower() == completed.ToLower())
+                              .ToList();
+
+                return Ok(tasks);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Tapahtui virhe. Lue lisää: " + ex);  
+            }
+        }
+
+        //Lisää uuden tehtävän
+        [HttpPost]
+
+        public ActionResult AddNew([FromBody]ToDolist task)
+        {
+            try
+            {
+                db.ToDolists.Add(task);
+                db.SaveChanges();
+                return Ok($"Lisättiin uusi tehtävä {task.Task} ,joka tulee tehdä {task.Date} mennessä.");
+            }
+            catch(Exception ex) {
+
+                return BadRequest("Tapahtui virhe. Lue lisää: " + ex.InnerException);
+            }
+
+
+        }
     }
 }
