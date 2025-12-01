@@ -38,8 +38,11 @@ public partial class ManageYourLifeReactDbContext : DbContext
         modelBuilder.Entity<ToDolist>(entity =>
         {
             entity
-                .HasNoKey()
                 .ToTable("ToDolist");
+
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id)
+                  .ValueGeneratedOnAdd();
 
             entity.Property(e => e.Completed).HasMaxLength(5);
             entity.Property(e => e.Date).HasMaxLength(50);

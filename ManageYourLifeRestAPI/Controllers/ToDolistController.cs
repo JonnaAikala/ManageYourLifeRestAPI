@@ -53,7 +53,8 @@ namespace ManageYourLifeRestAPI.Controllers
             }
             catch(Exception ex) {
 
-                return BadRequest("Tapahtui virhe. Lue lisää: " + ex.InnerException);
+              return BadRequest("Virhe: " + ex.Message +
+                      (ex.InnerException != null ? " | " + ex.InnerException.Message : ""));
             }
 
 
