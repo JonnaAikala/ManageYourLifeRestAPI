@@ -9,8 +9,13 @@ namespace ManageYourLifeRestAPI.Controllers
     [ApiController]
     public class ToDolistController : ControllerBase
     {
-        //Alustettiin tietokantayhteys
-        ManageYourLifeReactDbContext db = new ManageYourLifeReactDbContext();
+        //Alustettiin tietokantayhteys dependency injektion tavalla
+        private ManageYourLifeReactDbContext db;
+        
+        public ToDolistController(ManageYourLifeReactDbContext dbparametri)
+        {
+            db = dbparametri;
+        }
 
         //Hakee kaikki asiakkaat
         [HttpGet]
