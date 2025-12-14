@@ -22,8 +22,8 @@ builder.Services.AddCors(options =>
 // Dependency Injektiolla välitetty tietokantatieto kontrollereille
 // Connection string luetaan app setting.json tiedostosta
 builder.Services.AddDbContext<ManageYourLifeReactDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("paikallinen")
-    // builder.Configuration.GetConnectionString("pilvi")
+   // builder.Configuration.GetConnectionString("paikallinen")
+     builder.Configuration.GetConnectionString("pilvi")
     ));
 
 
